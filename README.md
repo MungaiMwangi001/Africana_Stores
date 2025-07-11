@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Africana Stores Frontend
 
-## Getting Started
+A modern, visually stunning, African-inspired eCommerce website for authentic Kenyan safari decorative products. Built with Next.js and Tailwind CSS.
 
-First, run the development server:
+## Features
+- Responsive, mobile-first layouts
+- Sticky dark navbar: hamburger menu on mobile, full horizontal menu on desktop/tablet
+- Wishlist icon on all devices
+- Modern, solid cart drawer with smooth slide-in, sticky subtotal/checkout, and card-style product items
+- Glassmorphic, animated currency selector
+- SEO-friendly, accessible (WCAG 2.1 AA)
+- Next.js Image optimization, lazy-loading, code-splitting
+- Card-based layouts, soft shadows, generous whitespace
+- Interactive features: product zoom, add-to-cart animation, live cart preview, quick view modal, search autocomplete, swipable carousels
+- Multi-currency selector
+- About Us and Contact pages
+- Minimal API route for Stripe Checkout integration (placeholder)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Theme & Design
+- **Colors:** Red, Black, White, Blue, Green, Yellow, Ochre, Olive Green, Deep Brown
+- **Typography:** Montserrat/Poppins (headings), Source Sans Pro (body)
+- **UI:** Clean, minimal, rounded, modern, with generous whitespace and glassmorphism
+
+## Directory Structure
+```
+africana_stortes/
+├── src/
+│   ├── app/           # Next.js app directory (pages, layouts)
+│   ├── components/    # Reusable UI components
+│   ├── lib/           # Utilities, API helpers
+│   └── styles/        # Custom styles (if needed)
+├── public/            # Static assets (images, icons)
+├── tailwind.config.js # Tailwind CSS config
+├── postcss.config.mjs # PostCSS config
+├── package.json       # Project dependencies
+└── README.md          # Project documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting Started
+1. **Install dependencies:**
+   ```bash
+   cd africana_stortes
+   npm install
+   ```
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Navigation
+- Home
+- Shop (with sticky category dropdown)
+- Product Details (dynamic)
+- Cart (modern overlay)
+- Wishlist
+- User Account (login/register/profile)
+- About Us
+- Contact
+- 404
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Customization
+- Theme colors and fonts are set in `tailwind.config.js` and `globals.css`.
+- Add or update products and images in the `public/` directory and product data files.
 
-## Learn More
+## Design Rationale
+This site is designed to be an experience: clean, modern, and inspired by African safari aesthetics. The color palette and typography evoke authenticity and warmth, while interactive features and smooth animations create a delightful shopping journey for international tourists.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Note:** Framer Motion is no longer used; all animations are handled with Tailwind CSS transitions and keyframes for performance and simplicity.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Ready for backend API integration and further customization!**
