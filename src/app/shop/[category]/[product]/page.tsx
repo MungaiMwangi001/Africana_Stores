@@ -115,9 +115,8 @@ function toProductFilename(slug: string) {
   return decodeURIComponent(slug).replace(/-/g, ' ') + '.jpg';
 }
 
-export async function generateMetadata({ params }: { params: { category: string; product: string } }): Promise<Metadata> {
-  const category = params.category;
-  const product = params.product;
+export async function generateMetadata({ params }: { params: Promise<{ category: string; product: string }> }): Promise<Metadata> {
+  const { category, product } = await params;
   const displayName = decodeURIComponent(product).replace(/-/g, ' ');
   const imageUrl = `/products/${category}/${decodeURIComponent(product).replace(/-/g, ' ')}.jpg`;
   const siteUrl = 'https://africanastores.com';
@@ -149,8 +148,8 @@ export async function generateMetadata({ params }: { params: { category: string;
   };
 }
 
-export default function ProductPage({ params }: { params: { category: string; product: string } }) {
-  const { category, product } = params;
+export default async function ProductPage({ params }: { params: Promise<{ category: string; product: string }> }) {
+  const { category, product } = await params;
   const images = categoryImages[category] || [];
   const mainImageFilename = toProductFilename(product);
   const displayName = decodeURIComponent(product).replace(/-/g, ' ');
