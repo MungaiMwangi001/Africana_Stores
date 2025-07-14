@@ -16,7 +16,6 @@ interface ProductDetailClientProps {
 
 export default function ProductDetailClient({
   category,
-  product,
   images,
   mainImageFilename,
   displayName,

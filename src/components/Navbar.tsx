@@ -3,8 +3,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '../lib/cartContext';
-import { useWishlist } from '../lib/wishlistContext';
-import { useAuth } from '../lib/authContext';
 import { useCurrency } from '../lib/currencyContext';
 import dynamic from 'next/dynamic';
 // import { motion } from 'framer-motion';
