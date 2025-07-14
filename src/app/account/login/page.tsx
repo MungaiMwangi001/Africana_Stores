@@ -53,7 +53,7 @@ export default function LoginPage() {
           Login
         </button>
         <div className="text-center mt-2">
-          <span className="text-primary-brown">Don't have an account? </span>
+          <span className="text-primary-brown">Don&apos;t have an account? </span>
           <Link href="/account/register" className="text-primary-green underline">Register</Link>
         </div>
       </form>
