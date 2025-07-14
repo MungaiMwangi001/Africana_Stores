@@ -180,7 +180,7 @@ export default async function ProductPage({ params }: { params: Promise<{ catego
   return (
     <ProductDetailClient
       category={category}
-      product={product}
+      
       images={images}
       mainImageFilename={mainImageFilename}
       displayName={displayName}
