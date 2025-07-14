@@ -83,15 +83,10 @@ const CartDrawer = dynamic(() => import('./CartDrawer'), { ssr: false });
 
 export default function Navbar() {
   const [cartOpen, setCartOpen] = useState(false);
-  const [accountOpen, setAccountOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const accountRef = useRef<HTMLButtonElement>(null);
   const { cart } = useCart();
-  const { wishlist } = useWishlist();
-  const { isLoggedIn, user, logout } = useAuth();
   const { currency, setCurrency } = useCurrency();
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const wishlistCount = wishlist.length;
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState<{ name: string; category: string; image: string }[]>([]);
   const [searchOpen, setSearchOpen] = useState(false);

@@ -2,7 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 
 interface QuickViewModalProps {
-  imageSrc: string;
   name: string;
   images: string[];
   mainImage: string;
@@ -11,7 +10,7 @@ interface QuickViewModalProps {
   category: string;
 }
 
-const QuickViewModal: React.FC<QuickViewModalProps> = ({ imageSrc, name, images, mainImage, setMainImage, onClose, category }) => {
+const QuickViewModal: React.FC<QuickViewModalProps> = ({ name, images, mainImage, setMainImage, onClose, category }) => {
   // Helper to build the correct image path
   const getImagePath = (img: string) => img.startsWith('/') ? img : `/products/${category}/${img}`;
 

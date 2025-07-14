@@ -1,14 +1,5 @@
 import React from 'react';
 import ShopClientWrapper from './ShopClientWrapper';
-import ProductFilter from '../../components/ProductFilter';
-import SearchBar from '../../components/SearchBar';
-import Pagination from '../../components/Pagination';
-import LoadingSpinner from '../../components/LoadingSpinner';
-import EmptyState from '../../components/EmptyState';
-import SkipToContent from '../../components/SkipToContent';
-import Breadcrumbs from '../../components/Breadcrumbs';
-import SkeletonProductCard from '../../components/SkeletonProductCard';
-import Toast from '../../components/Toast';
 
 const categories = [
   {

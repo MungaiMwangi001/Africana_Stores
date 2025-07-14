@@ -3,6 +3,7 @@ import Image from 'next/image';
 import NewsletterSignup from '../components/NewsletterSignup';
 import LiveChatWidget from '../components/LiveChatWidget';
 import SkipToContent from '../components/SkipToContent';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Africana Stores | Authentic Kenyan Safari Decor',
@@ -64,13 +65,13 @@ export default function Home() {
             <p className="text-lg md:text-2xl font-body mb-8 max-w-2xl mx-auto text-primary-brown">
               Discover handpicked, stunning pieces that bring the spirit of Africa to your home. Shop unique, artisan-crafted decor inspired by the wild beauty of Kenya.
             </p>
-            <a
+            <Link
               href="/shop"
               className="inline-block px-10 py-4 rounded-full bg-gradient-to-r from-ochre via-brown to-olive text-white font-heading text-xl shadow-lg ring-2 ring-ochre/40 hover:ring-olive/60 focus:outline-none focus:ring-4 focus:ring-olive/60 transition-all duration-200 animate-pulse"
               style={{ boxShadow: '0 0 32px 0 #CC7722AA' }}
             >
               Shop Now
-            </a>
+            </Link>
           </div>
           {/* Optional: Hero image with soft shadow */}
           <div className="absolute bottom-0 right-0 z-0 hidden md:block">
@@ -83,7 +84,7 @@ export default function Home() {
           <h2 className="text-2xl md:text-4xl font-heading font-semibold mb-8 text-brown text-center">Featured Categories</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {categories.map((cat) => (
-              <a
+              <Link
                 key={cat.folder}
                 href={`/shop#${cat.folder}`}
                 className="relative bg-white/60 dark:bg-charcoal/70 backdrop-blur-xl border border-white/30 dark:border-charcoal/40 rounded-2xl shadow-xl p-6 flex flex-col items-center transition-all group focus:outline-none focus:ring-2 focus:ring-ochre hover:scale-[1.03] hover:shadow-2xl hover:border-ochre/60"
@@ -108,7 +109,7 @@ export default function Home() {
                 <span className="px-4 py-2 rounded-full bg-gradient-to-r from-olive to-ochre text-white font-heading shadow hover:from-ochre hover:to-olive transition-colors z-10">
                   Shop {cat.name}
                 </span>
-              </a>
+              </Link>
             ))}
           </div>
         </section>
@@ -122,12 +123,12 @@ export default function Home() {
             <p className="text-lg font-body mb-6 max-w-xl mx-auto text-primary-brown/90">
               Shop our exclusive collection and let your space tell a story of wild beauty, vibrant culture, and unforgettable journeys.
             </p>
-            <a
+            <Link
               href="/shop"
               className="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-olive to-ochre text-white font-heading text-lg shadow-lg hover:from-ochre hover:to-olive focus:outline-none focus:ring-2 focus:ring-ochre focus:ring-offset-2 transition-all"
             >
               Explore the Collection
-            </a>
+            </Link>
           </div>
         </section>
         <NewsletterSignup />
