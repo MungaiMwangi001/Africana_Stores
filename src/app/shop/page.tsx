@@ -1,216 +1,174 @@
-import type { Metadata } from 'next';
-
 import React from 'react';
-import ProductCard from '../../components/ProductCard';
-import { useCurrency } from '../../lib/currencyContext';
+import ShopClientWrapper from './ShopClientWrapper';
+import ProductFilter from '../../components/ProductFilter';
+import SearchBar from '../../components/SearchBar';
+import Pagination from '../../components/Pagination';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import EmptyState from '../../components/EmptyState';
+import SkipToContent from '../../components/SkipToContent';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import SkeletonProductCard from '../../components/SkeletonProductCard';
+import Toast from '../../components/Toast';
 
 const categories = [
   {
     name: 'Bracelets',
     folder: 'bracelet',
-    images: [
-      'bracelet 1.jpg',
-      'bracelet 2.jpg',
-      'bracelet 4.jpg',
-      'bracelet 5.jpg',
-      'bracelet 6.jpg',
-      'bracelets 7.jpg',
-      'kenyan bracelet.jpg',
-      'kenyan bracelet 2.jpg',
+    products: [
+      { name: 'bracelet 1', image: 'bracelet 1.jpg', priceKES: 1000 },
+      { name: 'bracelet 2', image: 'bracelet 2.jpg', priceKES: 1200 },
+      { name: 'bracelet 4', image: 'bracelet 4.jpg', priceKES: 950 },
+      { name: 'bracelet 5', image: 'bracelet 5.jpg', priceKES: 1100 },
+      { name: 'bracelet 6', image: 'bracelet 6.jpg', priceKES: 1050 },
+      { name: 'bracelets 7', image: 'bracelets 7.jpg', priceKES: 1300 },
+      { name: 'kenyan bracelet', image: 'kenyan bracelet.jpg', priceKES: 1500 },
+      { name: 'kenyan bracelet 2', image: 'kenyan bracelet 2.jpg', priceKES: 1400 },
     ],
   },
   {
     name: 'Earings',
     folder: 'earings',
-    images: [
-      'earings 2.jpg',
-      'earribgs 2.jpg',
-      'earringss1.jpg',
+    products: [
+      { name: 'earings 2', image: 'earings 2.jpg', priceKES: 800 },
+      { name: 'earribgs 2', image: 'earribgs 2.jpg', priceKES: 850 },
+      { name: 'earringss1', image: 'earringss1.jpg', priceKES: 900 },
     ],
   },
   {
     name: 'Chokers',
     folder: 'choker',
-    images: [
-      'chokar 1.jpg',
-      'chokar 2.jpg',
-      'chokar 3.jpg',
-      'chokar 4.jpg',
-      'choker 12.jpg',
-      'choker 5.jpg',
+    products: [
+      { name: 'chokar 1', image: 'chokar 1.jpg', priceKES: 2000 },
+      { name: 'chokar 2', image: 'chokar 2.jpg', priceKES: 2100 },
+      { name: 'chokar 3', image: 'chokar 3.jpg', priceKES: 2200 },
+      { name: 'chokar 4', image: 'chokar 4.jpg', priceKES: 2300 },
+      { name: 'choker 12', image: 'choker 12.jpg', priceKES: 2400 },
+      { name: 'choker 5', image: 'choker 5.jpg', priceKES: 2500 },
     ],
   },
   {
     name: 'Necklaces',
     folder: 'necklace',
-    images: [
-      'necklace 1.jpg',
-      'necklace 3.jpg',
-      'necklace2.jpg',
+    products: [
+      { name: 'necklace 1', image: 'necklace 1.jpg', priceKES: 1800 },
+      { name: 'necklace 3', image: 'necklace 3.jpg', priceKES: 1850 },
+      { name: 'necklace2', image: 'necklace2.jpg', priceKES: 1900 },
     ],
   },
   {
     name: 'Wedding Necklaces',
     folder: 'weddingnecklace',
-    images: [
-      'wedding necklace.jpg',
-      'wedding necklace 2.jpg',
-      'wedding necklace 3.jpg',
-      'wedding necklace 4.jpg',
-      'wedding necklace 5.jpg',
+    products: [
+      { name: 'wedding necklace', image: 'wedding necklace.jpg', priceKES: 3000 },
+      { name: 'wedding necklace 2', image: 'wedding necklace 2.jpg', priceKES: 3200 },
+      { name: 'wedding necklace 3', image: 'wedding necklace 3.jpg', priceKES: 3400 },
+      { name: 'wedding necklace 4', image: 'wedding necklace 4.jpg', priceKES: 3600 },
+      { name: 'wedding necklace 5', image: 'wedding necklace 5.jpg', priceKES: 3800 },
     ],
   },
   {
     name: 'Shukas',
     folder: 'shukas',
-    images: [
-      'shuka 1.jpg',
-      'shuka 2.jpg',
-      'shuka 3.jpg',
-      'shuka 4.jpg',
-      'shuka 5.jpg',
+    products: [
+      { name: 'shuka 1', image: 'shuka 1.jpg', priceKES: 2500 },
+      { name: 'shuka 2', image: 'shuka 2.jpg', priceKES: 2550 },
+      { name: 'shuka 3', image: 'shuka 3.jpg', priceKES: 2600 },
+      { name: 'shuka 4', image: 'shuka 4.jpg', priceKES: 2650 },
+      { name: 'shuka 5', image: 'shuka 5.jpg', priceKES: 2700 },
     ],
   },
   {
     name: 'Sandals',
     folder: 'sandals',
-    images: [
-      'sandal 2.jpg',
-      'sandal 3.jpg',
-      'sandal 4.jpg',
-      'sandal 5.jpg',
-      'sandal 6.jpg',
-      'sandal 7.jpg',
-      'sandal 8.jpg',
-      'sandal 9.jpg',
-      'sandals 1.jpg',
+    products: [
+      { name: 'sandal 2', image: 'sandal 2.jpg', priceKES: 1200 },
+      { name: 'sandal 3', image: 'sandal 3.jpg', priceKES: 1250 },
+      { name: 'sandal 4', image: 'sandal 4.jpg', priceKES: 1300 },
+      { name: 'sandal 5', image: 'sandal 5.jpg', priceKES: 1350 },
+      { name: 'sandal 6', image: 'sandal 6.jpg', priceKES: 1400 },
+      { name: 'sandal 7', image: 'sandal 7.jpg', priceKES: 1450 },
+      { name: 'sandal 8', image: 'sandal 8.jpg', priceKES: 1500 },
+      { name: 'sandal 9', image: 'sandal 9.jpg', priceKES: 1550 },
+      { name: 'sandals 1', image: 'sandals 1.jpg', priceKES: 1600 },
     ],
   },
   {
     name: 'Masks',
     folder: 'masks',
-    images: [
-      'mask 1.jpg',
-      'mask 2.jpg',
-      'mask 3.jpg',
-      'mask 4.jpg',
-      'mask 5.jpg',
-      'mask 6.jpg',
-      'mask 7.jpg',
-      'mask 8.jpg',
+    products: [
+      { name: 'mask 1', image: 'mask 1.jpg', priceKES: 4000 },
+      { name: 'mask 2', image: 'mask 2.jpg', priceKES: 4200 },
+      { name: 'mask 3', image: 'mask 3.jpg', priceKES: 4400 },
+      { name: 'mask 4', image: 'mask 4.jpg', priceKES: 4600 },
+      { name: 'mask 5', image: 'mask 5.jpg', priceKES: 4800 },
+      { name: 'mask 6', image: 'mask 6.jpg', priceKES: 5000 },
+      { name: 'mask 7', image: 'mask 7.jpg', priceKES: 5200 },
+      { name: 'mask 8', image: 'mask 8.jpg', priceKES: 5400 },
     ],
   },
   {
     name: 'Animal Carvings',
     folder: 'carvings',
-    images: [
-      'animals.jpg',
-      'birds.jpg',
-      'bunny.jpg',
-      'eagle.jpg',
-      'elephant.jpg',
-      'elephant 2.jpg',
-      'elephant 3.jpg',
-      'elephant 4.jpg',
-      'fox.jpg',
-      'lion.jpg',
-      'lion 2.jpg',
-      'rhino 1.jpg',
+    products: [
+      { name: 'animals', image: 'animals.jpg', priceKES: 6000 },
+      { name: 'birds', image: 'birds.jpg', priceKES: 6200 },
+      { name: 'bunny', image: 'bunny.jpg', priceKES: 6400 },
+      { name: 'eagle', image: 'eagle.jpg', priceKES: 6600 },
+      { name: 'elephant', image: 'elephant.jpg', priceKES: 6800 },
+      { name: 'elephant 2', image: 'elephant 2.jpg', priceKES: 7000 },
+      { name: 'elephant 3', image: 'elephant 3.jpg', priceKES: 7200 },
+      { name: 'elephant 4', image: 'elephant 4.jpg', priceKES: 7400 },
+      { name: 'fox', image: 'fox.jpg', priceKES: 7600 },
+      { name: 'lion', image: 'lion.jpg', priceKES: 7800 },
+      { name: 'lion 2', image: 'lion 2.jpg', priceKES: 8000 },
+      { name: 'rhino 1', image: 'rhino 1.jpg', priceKES: 8200 },
     ],
   },
   {
     name: 'Soap Stones',
     folder: 'soaptones',
-    images: [
-      'bowls.jpg',
-      'calabash sopastone.jpg',
-      'oval plate.jpg',
-      'plate 1.jpg',
-      'sopastone 1.jpg',
+    products: [
+      { name: 'bowls', image: 'bowls.jpg', priceKES: 2000 },
+      { name: 'calabash sopastone', image: 'calabash sopastone.jpg', priceKES: 2200 },
+      { name: 'oval plate', image: 'oval plate.jpg', priceKES: 2400 },
+      { name: 'plate 1', image: 'plate 1.jpg', priceKES: 2600 },
+      { name: 'sopastone 1', image: 'sopastone 1.jpg', priceKES: 2800 },
     ],
   },
 ];
 
-function getRandomInRange(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+function addMarkup(amount: number, percent: number) {
+  return Math.round(amount * (1 + percent / 100));
 }
 
-const priceRules: Record<string, (img: string) => number> = {
-  bracelet: () => 100,
-  earings: () => 200,
-  choker: () => getRandomInRange(1000, 2000),
-  necklace: () => getRandomInRange(500, 1000),
-  weddingnecklace: () => getRandomInRange(800, 1200),
-  shukas: () => 1500,
-  sandals: () => 500,
-  masks: () => getRandomInRange(2000, 4000),
-  carvings: () => getRandomInRange(2000, 6000),
-  soaptones: () => getRandomInRange(500, 1500),
-};
+async function fetchForexRates() {
+  // MOCKED: Always return fallback rates for development
+  return { USD: 1, EUR: 1 };
+}
 
-export default function Shop() {
-  const { currency } = useCurrency();
+export default async function Shop() {
+  const forex = await fetchForexRates();
+
+  // Flatten products and calculate prices
+  const products = categories.flatMap(cat =>
+    cat.products.map(product => {
+      const usd = addMarkup(product.priceKES * forex.USD, 20);
+      const eur = addMarkup(product.priceKES * forex.EUR, 20);
+      return {
+        ...product,
+        imageSrc: `/products/${cat.folder}/${product.image}`,
+        prices: {
+          KES: product.priceKES,
+          USD: usd,
+          EUR: eur,
+        },
+        category: cat.folder,
+        categoryName: cat.name,
+      };
+    })
+  );
+
   return (
-    <main className="min-h-screen bg-background-light dark:bg-background-dark text-primary-black dark:text-primary-white font-body px-4 py-8">
-      <section className="relative max-w-7xl mx-auto mb-12">
-        {/* Glassy background shapes */}
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-ochre/20 rounded-full blur-3xl z-0" />
-        <div className="absolute -bottom-16 -right-16 w-80 h-80 bg-olive/20 rounded-full blur-2xl z-0" />
-        <div className="absolute top-1/2 left-1/2 w-[110vw] h-32 bg-white/10 backdrop-blur-2xl rounded-3xl -translate-x-1/2 -translate-y-1/2 border border-white/20 shadow-2xl z-0" />
-        <h1 className="relative z-10 text-3xl md:text-5xl font-heading font-bold mb-10 text-center bg-gradient-to-r from-ochre via-brown to-olive bg-clip-text text-transparent drop-shadow-lg">
-          Shop Our Catalogue
-        </h1>
-        {/* Category Dropdown */}
-        <div className="sticky top-[64px] z-40 flex justify-center mb-8 bg-white/90 backdrop-blur shadow-md py-2">
-          <select
-            className="px-4 py-2 rounded-full border border-ochre bg-white text-primary-brown font-heading shadow focus:outline-none focus:ring-2 focus:ring-ochre transition-all"
-            defaultValue=""
-            aria-label="Jump to category"
-            onChange={e => {
-              const id = e.target.value;
-              if (id) {
-                const el = document.getElementById(id);
-                if (el) {
-                  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-              }
-            }}
-          >
-            <option value="" disabled>Jump to a category...</option>
-            {categories.map(cat => (
-              <option key={cat.folder} value={cat.folder}>{cat.name}</option>
-            ))}
-          </select>
-        </div>
-      </section>
-      <div className="space-y-20 max-w-7xl mx-auto">
-        {categories.map((cat) => (
-          <section key={cat.folder} id={cat.folder} className="relative mb-12">
-            {/* Section glassy background */}
-            <div className="absolute inset-0 -z-10 bg-white/60 dark:bg-charcoal/70 backdrop-blur-xl rounded-3xl border border-white/30 dark:border-charcoal/40 shadow-xl" />
-            <h2 className="text-2xl md:text-3xl font-heading font-semibold mb-6 text-ochre pl-2 pt-4">{cat.name}</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 p-2">
-              {cat.images.map((img) => {
-                const basePrice = priceRules[cat.folder]?.(img) ?? 1000;
-                const prices = {
-                  KES: basePrice,
-                  USD: basePrice * 2,
-                  EUR: basePrice * 2,
-                };
-                return (
-                  <ProductCard
-                    key={img}
-                    imageSrc={`/products/${cat.folder}/${img}`}
-                    name={img.replace(/\.[^/.]+$/, "").replace(/_/g, ' ')}
-                    prices={prices}
-                    category={cat.folder}
-                  />
-                );
-              })}
-            </div>
-          </section>
-        ))}
-      </div>
-    </main>
+    <ShopClientWrapper products={products} categories={categories.map(cat => cat.name)} />
   );
 } 

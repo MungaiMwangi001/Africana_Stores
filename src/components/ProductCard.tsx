@@ -125,17 +125,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ imageSrc, name, prices, categ
   const { addToCart, removeFromCart, isInCart } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { currency } = useCurrency();
-  const [showModal, setShowModal] = useState(false);
   const inCart = isInCart(name, category);
   const inWishlist = isInWishlist(name, category);
-
-  // For modal gallery
-  const images = categoryImages[category] || [imageSrc];
-  const [mainImage, setMainImage] = useState(imageSrc);
-
-  React.useEffect(() => {
-    if (showModal) setMainImage(imageSrc);
-  }, [showModal, imageSrc]);
 
   const handleTrolleyClick = () => {
     if (inCart) {
@@ -175,13 +166,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ imageSrc, name, prices, categ
           </svg>
         )}
       </button>
-      {/* Clickable image for quick view */}
-      <button
-        className="w-full aspect-square relative overflow-hidden rounded-lg mb-2 focus:outline-none focus:ring-2 focus:ring-primary-ochre"
-        onClick={() => setShowModal(true)}
-        aria-label={`Quick view of ${name}`}
-        type="button"
-      >
+      {/* Product image (not clickable) */}
+      <div className="w-full aspect-square relative overflow-hidden rounded-lg mb-2">
         <Image
           src={imageSrc}
           alt={name}
@@ -190,7 +176,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ imageSrc, name, prices, categ
           sizes="(max-width: 768px) 100vw, 25vw"
           loading="lazy"
         />
-      </button>
+      </div>
       <span className="font-heading text-base text-primary-brown text-center line-clamp-2 mb-2">{name}</span>
       <span className="font-heading text-lg text-primary-brown mb-2">
         {currencySymbols[currency]} {prices[currency].toLocaleString()}
@@ -198,30 +184,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ imageSrc, name, prices, categ
       <button
         className={`mt-auto px-4 py-2 rounded-lg font-heading shadow-soft flex items-center gap-2 transition-all duration-200 focus:ring-2 focus:ring-primary-ochre ${inCart ? 'bg-primary-olive text-primary-white' : 'bg-primary-green text-primary-white hover:bg-primary-ochre hover:scale-105'}`}
         onClick={handleTrolleyClick}
+        aria-label={inCart ? 'Remove from cart' : 'Add to cart'}
         type="button"
       >
-        {inCart ? (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 007.5 17h9a1 1 0 00.85-1.53L17 13M7 13V6h13" />
-          </svg>
-        )}
-        {inCart ? 'Remove' : 'Trolley'}
+        {inCart ? 'Remove from Cart' : 'Add to Cart'}
       </button>
-      {/* Quick view modal with mini-gallery */}
-      {showModal && (
-        <QuickViewModal
-          imageSrc={imageSrc}
-          name={name}
-          images={images}
-          mainImage={mainImage}
-          setMainImage={setMainImage}
-          onClose={() => setShowModal(false)}
-        />
-      )}
     </div>
   );
 };

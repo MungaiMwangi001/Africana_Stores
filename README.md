@@ -12,14 +12,13 @@ A modern, visually stunning, African-inspired eCommerce website for authentic Ke
 - Next.js Image optimization, lazy-loading, code-splitting
 - Card-based layouts, soft shadows, generous whitespace
 - Interactive features: product zoom, add-to-cart animation, live cart preview, quick view modal, search autocomplete, swipable carousels
-- Multi-currency selector
-- About Us and Contact pages
-- Minimal API route for Stripe Checkout integration (placeholder)
-
-## Theme & Design
-- **Colors:** Red, Black, White, Blue, Green, Yellow, Ochre, Olive Green, Deep Brown
-- **Typography:** Montserrat/Poppins (headings), Source Sans Pro (body)
-- **UI:** Clean, minimal, rounded, modern, with generous whitespace and glassmorphism
+- Multi-currency selector (mocked for development)
+- About Us, Contact, FAQ, Privacy Policy, Terms, Shipping & Returns pages
+- Admin dashboard scaffolding
+- Newsletter signup and live chat widget (UI only)
+- Product filtering by category (sticky, hides on scroll down)
+- Custom 404 page
+- Accessibility features: skip to content, ARIA, keyboard navigation
 
 ## Directory Structure
 ```
@@ -50,13 +49,14 @@ africana_stortes/
 
 ## Navigation
 - Home
-- Shop (with sticky category dropdown)
+- Shop (with sticky, auto-hiding category filter)
 - Product Details (dynamic)
 - Cart (modern overlay)
 - Wishlist
 - User Account (login/register/profile)
 - About Us
 - Contact
+- FAQ, Privacy Policy, Terms, Shipping & Returns
 - 404
 
 ## Customization
@@ -65,6 +65,45 @@ africana_stortes/
 
 ## Design Rationale
 This site is designed to be an experience: clean, modern, and inspired by African safari aesthetics. The color palette and typography evoke authenticity and warmth, while interactive features and smooth animations create a delightful shopping journey for international tourists.
+
+---
+
+## Troubleshooting & Common Errors
+
+### 1. **Invalid Hook Call (React)**
+- **Error:** `Invalid hook call. Hooks can only be called inside of the body of a function component.`
+- **Cause:**
+  - The file was missing the `"use client"` directive at the very top.
+  - Multiple versions of React in `node_modules`.
+- **Solution:**
+  - Ensure `"use client"` is the first line in all client components.
+  - Run `npm ls react` and `npm ls react-dom` to check for duplicates.
+  - Restart the dev server after changes.
+
+### 2. **API Access Key/JSON Errors**
+- **Error:** `missing_access_key` or `Unexpected token '<', "<!DOCTYPE "... is not valid JSON`.
+- **Cause:**
+  - The forex API key was missing, invalid, or sent in the wrong way.
+  - The API returned an HTML error page instead of JSON (e.g., 502/524 from Cloudflare).
+- **Solution:**
+  - For apilayer/exchangeratesapi.io, send the key as a header: `{ apikey: 'YOUR_KEY' }`.
+  - For development, mock the rates in `fetchForexRates` to always return `{ USD: 1, EUR: 1 }`.
+
+### 3. **Cart/Wishlist State Loss**
+- **Error:** Cart or wishlist state resets on navigation.
+- **Cause:**
+  - Cart/Wishlist context providers not at the top level.
+  - Navigation using `<a>` instead of Next.js `<Link>`.
+- **Solution:**
+  - Ensure providers are in `layout.tsx`.
+  - Use `<Link href="...">` for all navigation.
+
+### 4. **Sticky Filter Bar Not Hiding/Showing**
+- **Error:** Category filter bar does not hide/show on scroll.
+- **Cause:**
+  - Scroll logic not using `useRef` for last scroll position.
+- **Solution:**
+  - Use the improved scroll logic with `useRef` as shown in `ShopClientWrapper.tsx`.
 
 ---
 

@@ -8,9 +8,13 @@ interface QuickViewModalProps {
   mainImage: string;
   setMainImage: (img: string) => void;
   onClose: () => void;
+  category: string;
 }
 
-const QuickViewModal: React.FC<QuickViewModalProps> = ({ imageSrc, name, images, mainImage, setMainImage, onClose }) => {
+const QuickViewModal: React.FC<QuickViewModalProps> = ({ imageSrc, name, images, mainImage, setMainImage, onClose, category }) => {
+  // Helper to build the correct image path
+  const getImagePath = (img: string) => img.startsWith('/') ? img : `/products/${category}/${img}`;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={onClose}>
       <div className="bg-primary-white dark:bg-background-dark rounded-xl shadow-soft p-6 max-w-md w-full relative" onClick={e => e.stopPropagation()} role="dialog" aria-modal="true" aria-label={`Quick view of ${name}`}> 
@@ -18,7 +22,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ imageSrc, name, images,
           &times;
         </button>
         <div className="w-full aspect-square relative overflow-hidden rounded-lg mb-4 mx-auto flex items-center justify-center">
-          <Image src={mainImage} alt={name} fill className="object-cover rounded-lg" sizes="400px" loading="eager" />
+          <Image src={getImagePath(mainImage)} alt={name} fill className="object-cover rounded-lg" sizes="400px" loading="eager" />
         </div>
         {/* Thumbnails */}
         {images.length > 1 && (
@@ -31,7 +35,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ imageSrc, name, images,
                 aria-label={`Show image ${img}`}
               >
                 <Image
-                  src={img}
+                  src={getImagePath(img)}
                   alt={img}
                   fill
                   className="object-cover rounded-lg"
