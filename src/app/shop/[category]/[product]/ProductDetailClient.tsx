@@ -7,7 +7,7 @@ import { useCurrency } from '../../../../lib/currencyContext';
 
 interface ProductDetailClientProps {
   category: string;
-  product: string;
+  
   images: string[];
   mainImageFilename: string;
   displayName: string;

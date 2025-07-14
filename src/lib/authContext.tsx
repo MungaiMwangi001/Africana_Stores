@@ -33,12 +33,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [user]);
 
-  const login = (email: string, password: string) => {
+  const login = (email: string, _password: string) => {
     // Dummy login: accept any email/password
     setUser({ name: email.split('@')[0], email });
   };
 
-  const register = (name: string, email: string, password: string) => {
+  const register = (name: string, email: string, _password: string) => {
     // Dummy register: just set user
     setUser({ name, email });
   };
@@ -49,6 +49,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     <AuthContext.Provider value={{ isLoggedIn, user, login, register, logout }}>
       {children}
     </AuthContext.Provider>
+    
   );
 };
 
