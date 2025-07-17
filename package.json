@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "eslint --fix \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@fontsource/lora": "^5.2.6",
