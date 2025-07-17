@@ -6,9 +6,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function CheckoutPage() {
-  const { cart, clearCart } = useCart();
+  const { cart } = useCart();
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const router = useRouter();
 
   // Helper to build WhatsApp message
   const getWhatsAppMessage = () => {
