@@ -59,16 +59,16 @@ export default function Home() {
             <div className="absolute top-1/2 left-1/2 w-[120vw] h-40 bg-white/10 backdrop-blur-2xl rounded-3xl -translate-x-1/2 -translate-y-1/2 border border-white/20 shadow-2xl" />
           </div>
           <div className="relative z-10 flex flex-col items-center">
-            <h1 className="text-4xl md:text-6xl font-heading font-bold mb-4 tracking-tight bg-gradient-to-r from-ochre via-brown to-olive bg-clip-text text-transparent drop-shadow-lg">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-heading font-bold mb-4 tracking-tight bg-gradient-to-r from-ochre via-brown to-olive bg-clip-text text-transparent drop-shadow-lg">
               Experience Authentic Kenyan Safari Decor
             </h1>
-            <p className="text-lg md:text-2xl font-body mb-8 max-w-2xl mx-auto text-primary-brown">
+            <p className="text-base sm:text-lg md:text-2xl font-body mb-8 max-w-2xl mx-auto text-charcoal dark:text-primary-white">
               Discover handpicked, stunning pieces that bring the spirit of Africa to your home. Shop unique, artisan-crafted decor inspired by the wild beauty of Kenya.
             </p>
             <Link
               href="/shop"
-              className="inline-block px-10 py-4 rounded-full bg-gradient-to-r from-ochre via-brown to-olive text-white font-heading text-xl shadow-lg ring-2 ring-ochre/40 hover:ring-olive/60 focus:outline-none focus:ring-4 focus:ring-olive/60 transition-all duration-200 animate-pulse"
-              style={{ boxShadow: '0 0 32px 0 #CC7722AA' }}
+              className="inline-block px-8 sm:px-10 py-3 sm:py-4 rounded-full bg-gradient-to-r from-ochre via-brown to-olive text-white font-heading text-lg sm:text-xl shadow-md sm:shadow-lg ring-2 ring-ochre/40 hover:ring-olive/60 focus:outline-none focus:ring-4 focus:ring-olive/60 transition-all duration-200 sm:animate-pulse"
+              style={{ boxShadow: '0 0 16px 0 #CC772288' }}
             >
               Shop Now
             </Link>
@@ -93,7 +93,7 @@ export default function Home() {
                 style={{ boxShadow: '0 4px 32px 0 #CC772220' }}
               >
                 {/* Optional: African pattern overlay */}
-                <div className="absolute inset-0 pointer-events-none rounded-2xl" style={{ background: 'repeating-linear-gradient(135deg, transparent, transparent 18px, #CC772210 20px, transparent 22px)' }} />
+                <div className="absolute inset-0 pointer-events-none rounded-2xl hidden sm:block" style={{ background: 'repeating-linear-gradient(135deg, transparent, transparent 18px, #CC772210 20px, transparent 22px)' }} />
                 <div className="w-full h-48 relative mb-4 z-10">
                   <Image
                     src={`/products/${cat.folder}/${cat.image}`}
@@ -104,8 +104,8 @@ export default function Home() {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="font-heading text-xl mb-2 text-brown group-hover:text-olive transition-colors z-10">{cat.name}</h3>
-                <p className="font-body text-brown mb-4 text-center z-10">Explore our unique {cat.name.toLowerCase()} collection.</p>
+                <h3 className="font-heading text-xl mb-2 text-charcoal dark:text-primary-white group-hover:text-olive transition-colors z-10">{cat.name}</h3>
+                <p className="font-body text-charcoal dark:text-primary-white mb-4 text-center z-10">Explore our unique {cat.name.toLowerCase()} collection.</p>
                 <span className="px-4 py-2 rounded-full bg-gradient-to-r from-olive to-ochre text-white font-heading shadow hover:from-ochre hover:to-olive transition-colors z-10">
                   Shop {cat.name}
                 </span>
@@ -117,10 +117,10 @@ export default function Home() {
         {/* Call to Action */}
         <section className="mt-16 mb-8 text-center">
           <div className="inline-block px-10 py-8 rounded-3xl bg-white/60 dark:bg-charcoal/80 backdrop-blur-xl shadow-2xl border border-white/30 dark:border-charcoal/40">
-            <h2 className="text-2xl md:text-3xl font-heading font-semibold mb-4 bg-gradient-to-r from-ochre via-brown to-olive bg-clip-text text-transparent">
+            <h2 className="text-2xl md:text-3xl font-heading font-semibold mb-4 bg-gradient-to-r from-ochre via-brown to-olive bg-clip-text text-transparent drop-shadow-sm">
               Bring the Adventure Home
             </h2>
-            <p className="text-lg font-body mb-6 max-w-xl mx-auto text-primary-brown/90">
+            <p className="text-lg font-body mb-6 max-w-xl mx-auto text-charcoal dark:text-primary-white/90">
               Shop our exclusive collection and let your space tell a story of wild beauty, vibrant culture, and unforgettable journeys.
             </p>
             <Link

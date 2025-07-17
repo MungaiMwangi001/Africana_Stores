@@ -7,19 +7,19 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
         {/* Site Info */}
         <div className="flex flex-col items-center md:items-start mb-6 md:mb-0">
-          <span className="font-heading text-2xl font-bold text-primary-red mb-2">Africana Stores</span>
-          <span className="text-primary-brown text-sm">&copy; {new Date().getFullYear()} Africana Stores. All rights reserved.</span>
+          <span className="font-heading text-2xl sm:text-3xl font-extrabold text-charcoal dark:text-primary-white mb-2 drop-shadow-sm" style={{ textShadow: '0 1px 2px #fff8, 0 0px 1px #1C1C1C' }}>AFRICANA STORES</span>
+          <span className="text-charcoal dark:text-primary-white text-sm font-medium">&copy; {new Date().getFullYear()} Africana Stores. All rights reserved.</span>
         </div>
         {/* Navigation Links */}
         <nav className="flex flex-col md:flex-row gap-4 md:gap-8 items-center">
-          <Link href="/" className="text-primary-brown hover:text-primary-ochre font-heading">Home</Link>
-          <Link href="/shop" className="text-primary-brown hover:text-primary-green font-heading">Shop</Link>
-          <Link href="/wishlist" className="text-primary-brown hover:text-primary-red font-heading">Wishlist</Link>
-          <Link href="/contact" className="text-primary-brown hover:text-primary-blue font-heading">Contact</Link>
+          <Link href="/" className="text-charcoal dark:text-primary-white hover:text-primary-ochre font-heading">Home</Link>
+          <Link href="/shop" className="text-charcoal dark:text-primary-white hover:text-primary-green font-heading">Shop</Link>
+          <Link href="/wishlist" className="text-charcoal dark:text-primary-white hover:text-primary-red font-heading">Wishlist</Link>
+          <Link href="/contact" className="text-charcoal dark:text-primary-white hover:text-primary-blue font-heading">Contact</Link>
         </nav>
         {/* Newsletter Signup */}
         <form className="flex flex-col items-center md:items-end gap-2">
-          <label htmlFor="newsletter" className="font-heading text-primary-brown">Newsletter</label>
+          <label htmlFor="newsletter" className="font-heading text-charcoal dark:text-primary-white">Newsletter</label>
           <div className="flex gap-2">
             <input
               id="newsletter"
