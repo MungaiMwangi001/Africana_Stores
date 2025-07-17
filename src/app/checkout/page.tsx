@@ -31,7 +31,13 @@ export default function CheckoutPage() {
               {cart.map((item) => (
                 <div key={item.name + item.category} className="flex items-center gap-4 bg-primary-white dark:bg-background-dark rounded-lg shadow p-2">
                   <div className="w-16 h-16 relative rounded-lg overflow-hidden">
-                    <Image src={item.imageSrc} alt={item.name} fill className="object-cover rounded-lg" sizes="64px" />
+                    <Image 
+                      src={item.imageSrc} 
+                      alt={item.name} 
+                      fill 
+                      className="object-cover rounded-lg" 
+                      sizes="64px" 
+                    />
                   </div>
                   <div className="flex-1">
                     <div className="font-heading text-base text-primary-brown">{item.name}</div>
@@ -49,7 +55,11 @@ export default function CheckoutPage() {
             <div className="mb-6">
               <div className="mb-4">
                 <label className="block font-heading mb-2 text-primary-brown">Shipping Address</label>
-                <input type="text" className="w-full px-4 py-2 rounded-lg border border-primary-brown/20 bg-background-light dark:bg-background-dark text-primary-black dark:text-primary-white" placeholder="Enter your address (dummy)" />
+                <input 
+                  type="text" 
+                  className="w-full px-4 py-2 rounded-lg border border-primary-brown/20 bg-background-light dark:bg-background-dark text-primary-black dark:text-primary-white" 
+                  placeholder="Enter your address (dummy)" 
+                />
               </div>
               <div>
                 <label className="block font-heading mb-2 text-primary-brown">Payment Method</label>
