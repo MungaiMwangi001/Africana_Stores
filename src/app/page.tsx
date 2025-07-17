@@ -67,9 +67,12 @@ export default function Home() {
             </p>
             <Link
               href="/shop"
-              className="inline-block px-8 sm:px-10 py-3 sm:py-4 rounded-full bg-gradient-to-r from-ochre via-brown to-olive text-white font-heading text-lg sm:text-xl shadow-md sm:shadow-lg ring-2 ring-ochre/40 hover:ring-olive/60 focus:outline-none focus:ring-4 focus:ring-olive/60 transition-all duration-200 sm:animate-pulse"
-              style={{ boxShadow: '0 0 16px 0 #CC772288' }}
+              className="inline-flex items-center gap-2 px-12 sm:px-16 py-5 sm:py-6 rounded-full bg-gradient-to-r from-ochre via-brown to-olive text-white font-heading text-2xl sm:text-3xl font-bold shadow-2xl ring-4 ring-ochre/60 hover:ring-olive/80 focus:outline-none focus:ring-8 focus:ring-olive/80 transition-all duration-200 animate-bounce"
+              style={{ boxShadow: '0 0 32px 8px #CC7722cc, 0 0 64px 16px #5D4037aa' }}
             >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7 text-white drop-shadow-md">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25A3.75 3.75 0 0011.25 18h1.5a3.75 3.75 0 003.75-3.75V6.75m-9 7.5V6.75m0 0L4.125 5.272A1.125 1.125 0 013.75 4.5H2.25m5.25 2.25h9.75m0 0l1.125 1.478c.18.236.375.522.375.772v7.5A3.75 3.75 0 0116.5 18h-1.5a3.75 3.75 0 01-3.75-3.75V6.75z" />
+              </svg>
               Shop Now
             </Link>
           </div>
@@ -106,7 +109,13 @@ export default function Home() {
                 </div>
                 <h3 className="font-heading text-xl mb-2 text-charcoal dark:text-primary-white group-hover:text-olive transition-colors z-10">{cat.name}</h3>
                 <p className="font-body text-charcoal dark:text-primary-white mb-4 text-center z-10">Explore our unique {cat.name.toLowerCase()} collection.</p>
-                <span className="px-4 py-2 rounded-full bg-gradient-to-r from-olive to-ochre text-white font-heading shadow hover:from-ochre hover:to-olive transition-colors z-10">
+                <span
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/95 dark:bg-charcoal/95 backdrop-blur border border-ochre/30 shadow-lg text-primary-brown font-heading text-lg font-semibold hover:bg-gradient-to-r hover:from-ochre hover:to-olive hover:text-white transition-all duration-200 z-10 animate-pulse"
+                  style={{ boxShadow: '0 0 16px 0 #CC772288' }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 mr-1">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25A3.75 3.75 0 0011.25 18h1.5a3.75 3.75 0 003.75-3.75V6.75m-9 7.5V6.75m0 0L4.125 5.272A1.125 1.125 0 013.75 4.5H2.25m5.25 2.25h9.75m0 0l1.125 1.478c.18.236.375.522.375.772v7.5A3.75 3.75 0 0116.5 18h-1.5a3.75 3.75 0 01-3.75-3.75V6.75z" />
+                  </svg>
                   Shop {cat.name}
                 </span>
               </Link>

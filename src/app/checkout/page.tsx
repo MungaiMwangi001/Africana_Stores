@@ -3,10 +3,23 @@ import React from 'react';
 import { useCart } from '../../lib/cartContext';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function CheckoutPage() {
   const { cart, clearCart } = useCart();
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const router = useRouter();
+
+  // Helper to build WhatsApp message
+  const getWhatsAppMessage = () => {
+    if (cart.length === 0) return '';
+    let message = 'Hello, I would like to place an order:%0A';
+    cart.forEach((item, idx) => {
+      message += `${idx + 1}. ${item.name} (Category: ${item.category}) x${item.quantity} - $${item.price.toFixed(2)}%0A`;
+    });
+    message += `%0ASubtotal: $${subtotal.toFixed(2)}`;
+    return message;
+  };
 
   return (
     <main className="min-h-screen bg-background-light dark:bg-background-dark text-primary-black dark:text-primary-white font-body px-4 py-8 flex flex-col items-center">
@@ -49,12 +62,17 @@ export default function CheckoutPage() {
                 </select>
               </div>
             </div>
-            <button
-              className="w-full px-6 py-3 rounded-lg bg-primary-green text-primary-white font-heading text-lg shadow-soft hover:bg-primary-olive transition-colors mb-2"
-              onClick={clearCart}
+            <a
+              href={`https://wa.me/254713601946?text=${encodeURIComponent(getWhatsAppMessage())}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full px-6 py-3 rounded-lg bg-green-600 text-white font-heading text-lg shadow-soft hover:bg-green-700 transition-colors mb-2 flex items-center justify-center gap-2"
             >
-              Place Order (Dummy)
-            </button>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 mr-2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25A3.75 3.75 0 0011.25 18h1.5a3.75 3.75 0 003.75-3.75V6.75m-9 7.5V6.75m0 0L4.125 5.272A1.125 1.125 0 013.75 4.5H2.25m5.25 2.25h9.75m0 0l1.125 1.478c.18.236.375.522.375.772v7.5A3.75 3.75 0 0116.5 18h-1.5a3.75 3.75 0 01-3.75-3.75V6.75z" />
+              </svg>
+              Place Order via WhatsApp
+            </a>
           </>
         )}
       </div>
